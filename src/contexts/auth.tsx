@@ -1,12 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as auth from "../service/auth"
+import * as auth from "../service/api"
 
 interface AuthContextData {
     signed: boolean;
     user: object | null;
     loading: boolean;
-    signIn(): Promise<void>;
+    signIn(email : string, password : string): Promise<void>;
     signOut(): void;
 }
 
@@ -32,9 +32,9 @@ export const AuthProvider: React.FC = ({ children }) => {
         loadStoragedData();
     }, []);
 
-    async function signIn() {
+    async function signIn(email, password) {
         
-        const response = await auth.signIn();
+        const response = await auth.signIn(email, password);
         const { token, user } = response;
         setUser(user);
 

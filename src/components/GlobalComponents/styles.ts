@@ -1,13 +1,13 @@
 import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 
-
 export const Header = styled.View`
   flex-direction: row;
   height: 20%;
   justify-content: center;
   align-items: center;
-`;
+`
+
 export const Container = styled.View`
   flex: 1;
   background: #8CA4FC;
@@ -41,7 +41,8 @@ export const Card = styled(Animated.View)`
 export const CardHeader = styled.View`
   flex-direction: row;
   align-items: center;
-  padding: 80px;
+  justify-content: center;
+  padding: 30px;
 `;
 
 export const CardContent = styled.View`
@@ -49,7 +50,6 @@ export const CardContent = styled.View`
   padding: 0 30px;
   justify-content: center;
   align-items: center;
-  max-height: 80%;
 `;
 
 export const Title = styled.Text`
@@ -92,3 +92,7 @@ export const Btn = styled.Text`
   text-align: center;
   border-radius: 5px;
 `
+export const Strong = styled.Text`
+  font-weight: bold;
+  color: #05377F;
+`;

@@ -3,6 +3,8 @@ import { View, ActivityIndicator } from "react-native";
 import AppRoutes from "./app.routes";
 import AuthRoutes from "./auth.routes";
 import AuthContext from "../contexts/auth";
+import HeaderComponent from "../components/Header";
+
 
 const Routes: React.FC = () => {
     const { signed, loading } = useContext(AuthContext);
@@ -13,7 +15,7 @@ const Routes: React.FC = () => {
             </View>
         );
     }
-    return signed ? <AppRoutes/> : <AuthRoutes />;
+    return signed ? <AppRoutes/> : <AuthRoutes />
 };
 
 export default Routes;

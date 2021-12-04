@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import {  StyleSheet, View, Button, Text, TextInput } from "react-native";
+import { Text } from "react-native";
 import AuthContext from "../../contexts/auth";
 import { Btn, Form, Header, Card, Container, CardHeader, CardContent, Title, Annotation, CardFooter } from "./styles";
-import InputFloatLabel from "../../components";
+import InputFloatLabel from "../../components/InputFloatLabel";
 
-const SignIn: React.FC = () => {
+const SignIn: React.FC = ({ navigation }) => {
     const { signed, signIn } = useContext(AuthContext);
 
     const [email, setEmail] = React.useState("");
@@ -32,13 +32,13 @@ const SignIn: React.FC = () => {
                 <CardContent>
                     <Form>
                         <Text>{error}</Text>
-                        <InputFloatLabel value={email} onChange={setEmail} label="Email" />
+                        <InputFloatLabel value={email} onChange={setEmail}  label="Email" />
                         <InputFloatLabel value={password} onChange={setPassword} password={true}  label="Senha" />
                     </Form>
                     <Btn onPress={handleSignIn} >Entrar</Btn>
                 </CardContent>
                 <CardFooter>
-                    <Annotation>Não tem uma conta? <Text style={{ color: '#05377F' }}>Cadastre-se</Text></Annotation>
+                    <Annotation>Não tem uma conta? <Text onPress={() => navigation.navigate('SignUp')} style={{ color: '#05377F' }}>Cadastre-se</Text></Annotation>
                 </CardFooter>
                 </Card>
         </Container>

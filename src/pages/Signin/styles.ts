@@ -1,5 +1,5 @@
 import { Animated } from 'react-native';
-import styled from 'styled-components/native';
+import styled from "styled-components/native"
 
 export const Header = styled.View`
   flex-direction: row;
