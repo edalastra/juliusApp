@@ -32,14 +32,13 @@ export const AuthProvider: React.FC = ({ children }) => {
         loadStoragedData();
     }, []);
 
-    async function signIn(email, password) {
-        
-        const response = await auth.signIn(email, password);
-        const { token, user } = response;
-        setUser(user);
+    async function signIn(email : string, password : string) {
+            const response = await auth.signIn(email, password);
+            const { token, user } = response;
+            setUser(user);
 
-        await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(user));
-        await AsyncStorage.setItem('@RNAuth:token', token);
+            await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(user));
+            await AsyncStorage.setItem('@RNAuth:token', token);
     }    
 
     function signOut() {
@@ -49,7 +48,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ signed: Boolean(user), user: user, loading, signIn, signOut }}>
+        <AuthContext.Provider value={{ signed: Boolean(user), user: user, loading, signIn, signOut}}>
             {children}
         </AuthContext.Provider>
     )

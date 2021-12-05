@@ -24,14 +24,8 @@ const SignUp : React.FC = () => {
         if(password !== confirmPassword){
             return alert("As senhas precisam ser iguais.");
         }
-        try {
-            const response = await signUp(name, email, password);
-            if(response.status === 200){
-                await signIn(email, password);
-            }
-        } catch(err){
-            alert(err);
-        }
+            await signUp(name, email, password);
+            await signIn(email, password);
     };
 
 

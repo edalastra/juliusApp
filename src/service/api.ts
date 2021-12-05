@@ -9,32 +9,34 @@ interface Response {
 }
 
 const api = axios.create({
-    baseURL: 'http://localhost:3333'
+    baseURL: 'http://10.0.2.2:3000/api'
 });
 
 export function signIn(email : string, password: string): Promise<Response> {
-    return new Promise(async (resolve, reject) => {
-    try{
-        const response = await api.post('/sessions', {
+    return new Promise(async (resolve) => {
+        const response = await api.post('/authenticate', {
             email,
             password
-        });
-        resolve(response.data);
-    } catch(err) {
-        reject(err);
-    }});
+        }).then(response => resolve(response.data))
+        .catch(error => {
+                throw new Error('Usuário ou senha inválidos');
+            
+        })
+    });
 };
 
 export function signUp(name: string, email: string, password: string): Promise<Response> {
-    return new Promise(async (resolve, reject) => {
-    try{
-        const response = await api.post('/users', {
+    return new Promise(async (resolve) => {
+        const response = await api.post('/register', {
             name,
             email,
             password
+        }).then(response => {
+            resolve(response.data);
+        })
+        .catch(err => {
+            console.log(err.response.status)
+            throw err;
         });
-        resolve(response.data);
-    } catch(err) {
-        reject(err);
-    }});
-}
+    })
+};

@@ -15,8 +15,13 @@ const SignIn: React.FC = ({ navigation }) => {
         if (email.length === 0 || password.length === 0) {
             return setError("Preencha todos os campos");
         }
-        await signIn();
-        console.log('logar');
+        try {
+            await signIn(email, password);
+        } catch (err : any) {
+            setError(err.message);
+        }
+      
+
     }
 
     return (
