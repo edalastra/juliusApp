@@ -1,12 +1,25 @@
 
+
 import Home from '../pages/Home';
+import Profile from '../pages/Profile';
+import RegisterInfo from '../pages/RegisterInfo';
+
 
 export default [
     {
         name: 'Home',
         component: Home,
-        iconTyope: 'FontAwesome',
         iconName: 'home',
+    },
+    {
+        name: 'Orçamento',
+        component: RegisterInfo,
+        iconName: 'money',
+    },
+    {
+        name: 'Perfil',
+        component: Profile,
+        iconName: 'user'
     },
     // {
     //     name:'Sair',

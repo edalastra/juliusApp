@@ -16,8 +16,9 @@ const Home: React.FC = () => {
       <SafeAreaView>
         <ScrollView style={styles.container}>
           <Card >
+            <CardHeader>
             <Annotation>Visão Geral - Novembro</Annotation>
-
+            </CardHeader>
             <View style={styles.info}>
               <View style={styles.totGreen} />
               <Text style={styles.textInfo} >Receita</Text>
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
   },
   value: {
     textAlign: "right",
-    fontFamily: "Lato",
+    fontFamily: "Lato-Regular",
     fontSize: 16,
   },
   textGreen: {

@@ -42,7 +42,7 @@ export const CardHeader = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 30px;
+  padding: 10px;
 `;
 
 export const CardContent = styled.View`
@@ -110,4 +110,6 @@ export const colors = {
   blue: '#28B2E1',
   orange: '#E1963B',
   primary: '#8CA4FC',
+  secondary: '#D2D2D2',
+  strong: '#05377F'
 };

@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
     },
     salutation: {
-        fontFamily: 'Lato-semibold',
+        fontFamily: 'Lato-Bold',
         color: '#fff',
         fontSize: 20,
         textAlign: 'right',
