@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Text } from "react-native";
 import AuthContext from "../../contexts/auth";
-import { Btn, Form, Header, Card, Container, CardHeader, CardContent, Title, Annotation, CardFooter } from "./styles";
+import { Btn, BtnText, Form, Header, Card, Container, CardHeader, CardContent, Title, Annotation, CardFooter } from "../../components/GlobalComponents/styles";
 import InputFloatLabel from "../../components/InputFloatLabel";
 
 const SignIn: React.FC = ({ navigation }) => {
@@ -27,9 +27,9 @@ const SignIn: React.FC = ({ navigation }) => {
     return (
 
         <Container>
-            <Header>
+            {/* <Header>
                 <Title>JULIUS APP</Title>
-            </Header>
+            </Header> */}
             <Card>
                 <CardHeader>
                     <Annotation >Faça login para continuar</Annotation>
@@ -40,7 +40,7 @@ const SignIn: React.FC = ({ navigation }) => {
                         <InputFloatLabel value={email} onChange={setEmail}  label="Email" />
                         <InputFloatLabel value={password} onChange={setPassword} password={true}  label="Senha" />
                     </Form>
-                    <Btn onPress={handleSignIn} >Entrar</Btn>
+                    <Btn onPress={handleSignIn} ><BtnText>Entrar</BtnText></Btn>
                 </CardContent>
                 <CardFooter>
                     <Annotation>Não tem uma conta? <Text onPress={() => navigation.navigate('SignUp')} style={{ color: '#05377F' }}>Cadastre-se</Text></Annotation>

@@ -30,7 +30,7 @@ export const Card = styled(Animated.View)`
   flex: 1;
   background: #fff;
   border-radius: 4px;
-  margin: 0 20px;
+  margin: 0 10px;
   margin-bottom: 30px;
   height: 80%;
   left: 0;
@@ -84,15 +84,30 @@ export const Form = styled.View`
   width: 100%;
 `;
 
-export const Btn = styled.Text`
-  margin-top: 20px;
+export const Btn = styled.TouchableOpacity`
   border: 1px solid #8CA4FC;
   padding: 10px;
-  width: 50%;
-  text-align: center;
+  width: 30%;
   border-radius: 5px;
-`
+  text-align: center;
+`;
+export const BtnText = styled.Text`
+  font-size: 16px;
+  color: #8CA4FC;
+  font-family: 'Roboto';
+  text-align: center;
+  `
+
 export const Strong = styled.Text`
   font-weight: bold;
   color: #05377F;
 `;
+
+
+export const colors = {
+  green: '#659A00',
+  red: '#CC0000',
+  blue: '#28B2E1',
+  orange: '#E1963B',
+  primary: '#8CA4FC',
+};

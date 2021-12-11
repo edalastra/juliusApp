@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { StyleSheet, ScrollView, SafeAreaView, View, Button, Text } from "react-native";
-import { Btn, CardHeader, Annotation, Container, Card, CardContent, Title } from '../../components/GlobalComponents/styles';
+import { Btn, BtnText, CardHeader, Annotation, Container, CardFooter, Card, CardContent, Title, colors } from '../../components/GlobalComponents/styles';
+import HeaderComponent from "../../components/Header";
 import AuthContext from "../../contexts/auth";
+
 
 const Home: React.FC = () => {
   const { signOut } = useContext(AuthContext);
@@ -10,6 +12,7 @@ const Home: React.FC = () => {
     signOut();
   }
   return (
+    
       <SafeAreaView>
         <ScrollView style={styles.container}>
           <Card >
@@ -18,22 +21,37 @@ const Home: React.FC = () => {
             <View style={styles.info}>
               <View style={styles.totGreen} />
               <Text style={styles.textInfo} >Receita</Text>
+              <View style={styles.valueContent}>
+                <Text style={[styles.value, styles.textGreen]} >R$ 0,00</Text>
+              </View>
             </View>
 
             <View style={styles.info}>
               <View style={styles.totOrange} />
               <Text style={styles.textInfo} >Despesas</Text>
+              <View style={styles.valueContent}>
+                <Text style={[styles.value, styles.textRed]} >R$ 0,00</Text>
+              </View>
             </View>
 
             <View style={styles.info}>
               <View style={styles.totRed} />
               <Text style={styles.textInfo} >Gastos</Text>
+              <View style={styles.valueContent}>
+                <Text style={[styles.value, styles.textRed]} >R$ 0,00</Text>
+              </View>
             </View>
             <View style={styles.info}>
               <View style={styles.totBlue} />
               <Text style={styles.textInfo} >Investimentos</Text>
+              <View style={styles.valueContent}>
+                <Text style={[styles.value, styles.textRed]} >R$ 0,00</Text>
+              </View>
             </View>
-            <Btn>Alterar</Btn>
+            <CardFooter>
+              <Btn ><BtnText>Alterar</BtnText></Btn>
+
+            </CardFooter>
           </Card>
         </ScrollView >
       </SafeAreaView>
@@ -56,25 +74,39 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 10,
   },
+  valueContent: {
+    flex: 1,
+  },
+  value: {
+    textAlign: "right",
+    fontFamily: "Lato",
+    fontSize: 16,
+  },
+  textGreen: {
+    color: colors.green,
+  },
+  textRed:{
+    color: colors.red,
+  },
   totGreen: {
     width: 5,
     height: 30,
-    backgroundColor: '#659A00',
+    backgroundColor: colors.green,
   },
   totRed: {
     width: 5,
     height: 30,
-    backgroundColor: '#CC0000',
+    backgroundColor: colors.red,
   },
   totOrange: {
     width: 5,
     height: 30,
-    backgroundColor: '#E1963B',
+    backgroundColor: colors.orange,
   },
   totBlue: {
     width: 5,
     height: 30,
-    backgroundColor: '#28B2E1',
+    backgroundColor: colors.blue,
   }
 });
 

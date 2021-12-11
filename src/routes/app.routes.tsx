@@ -1,14 +1,38 @@
-import React from "react";
-import { createNativeStackNavigator  } from "@react-navigation/native-stack";
+import React, { useContext } from "react";
+import { StatusBar, View } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import DrawerItems from "../constrants/DrawerItems";
+import { colors } from "../components/GlobalComponents/styles";
 
 import Home from "../pages/Home";
+import HeaderComponent from "../components/Header";
 
-const AppStack = createNativeStackNavigator ();
+
+
+const AppStack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
 
 const AppRoutes: React.FC = () => (
-    <AppStack.Navigator screenOptions={{headerShown: false}}>
-        <AppStack.Screen name="Login" component={Home} />
-    </AppStack.Navigator>
+    <>
+        <StatusBar barStyle="dark-content" hidden={false} backgroundColor={colors.primary} translucent={false} />
+        <Drawer.Navigator initialRouteName="Home"
+        screenOptions={{
+            headerShown: true,
+            header: ({ scene, previous, navigation }) => <HeaderComponent scene={scene} previous={previous} navigation={navigation} />,
+          }}>
+        {
+          DrawerItems.map(drawer=><Drawer.Screen 
+            key={drawer.name}
+            name={drawer.name} 
+            component={
+                drawer.component
+            } 
+          />)
+        }
+        </Drawer.Navigator>
+    </>
 );
 
 export default AppRoutes;

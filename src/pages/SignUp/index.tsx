@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CheckBox } from 'react-native-elements'
 import { View, Text, StyleSheet } from 'react-native';
-import { Btn, Strong, Container, Card, Annotation, CardHeader, CardContent, Form, CardFooter } from "../../components/GlobalComponents/styles";
+import { Btn, BtnText, Strong, Container, Card, Annotation, CardHeader, CardContent, Form, CardFooter } from "../../components/GlobalComponents/styles";
 import InputFloatLabel from "../../components/InputFloatLabel";
 import AuthContext from "../../contexts/auth";
 import { signUp } from "../../service/api";
@@ -46,7 +46,7 @@ const SignUp : React.FC = () => {
                             <Annotation style={styles.text} >Concordo com os <Strong>termos de serviço</Strong> e a <Strong>politica de privacidade</Strong> do <Strong>Julius App</Strong></Annotation>
                         </View>
                     </Form>
-                    <Btn onPress={submit}>Cadastrar</Btn>
+                    <Btn onPress={submit}><BtnText>Cadastrar</BtnText></Btn>
                 </CardContent>
 
 

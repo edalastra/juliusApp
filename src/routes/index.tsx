@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { View, ActivityIndicator } from "react-native";
+
 import AppRoutes from "./app.routes";
 import AuthRoutes from "./auth.routes";
 import AuthContext from "../contexts/auth";
-import HeaderComponent from "../components/Header";
+
 
 
 const Routes: React.FC = () => {
