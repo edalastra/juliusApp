@@ -103,6 +103,20 @@ export const Strong = styled.Text`
   color: #05377F;
 `;
 
+export const FixedBtn = styled.TouchableOpacity`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  background: #05377F;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  `;
+
 
 export const colors = {
   green: '#659A00',
@@ -111,5 +125,7 @@ export const colors = {
   orange: '#E1963B',
   primary: '#8CA4FC',
   secondary: '#D2D2D2',
-  strong: '#05377F'
+  strong: '#05377F',
+  redLight: '#FFCACA',
+  greenLight: "#D1FFD1"
 };

@@ -9,8 +9,6 @@ import { colors } from "../components/GlobalComponents/styles";
 import Home from "../pages/Home";
 import HeaderComponent from "../components/Header";
 
-
-
 const AppStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 

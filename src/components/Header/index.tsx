@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -7,6 +7,8 @@ import AuthContext from "../../contexts/auth";
 
 
 const HeaderComponent : React.FC = ({ navigation }) => {
+    const { signOut } = useContext(AuthContext);
+
     const { user } = React.useContext(AuthContext);
     const firstName = user.name.split(' ')[0];
 
@@ -19,7 +21,7 @@ const HeaderComponent : React.FC = ({ navigation }) => {
 
             </View>
             <View style={styles.salutationContainer}>
-                <Text style={styles.salutation}>Olá, {firstName}</Text>
+                <Text onPress={signOut} style={styles.salutation}>Olá, {firstName}</Text>
             </View>
         </View>
     );

@@ -5,7 +5,7 @@ interface Props {
     label: string;
     password: boolean | undefined;
     value: any;
-    onChange: any;
+    onChange: (value: string) => void;
 }
 
 const InputFloatLabel = ({ label, password=false, onChange, value } : Props) => {
