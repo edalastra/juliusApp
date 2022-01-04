@@ -1,6 +1,6 @@
 import React from "react";
 import { colors } from "../GlobalComponents/styles";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ColorPropType } from "react-native";
 
 interface Props {
     type: string;
@@ -8,8 +8,15 @@ interface Props {
     description: string;
 };
 
+const currencyFormat = (num) => {
+    return 'R$ ' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+  }
+
 const BudgetItem : React.FC<Props> = ({ type, description, amount } : Props) => {
-    const bgColor = type === "Receita" ? colors.greenLight : colors.redLight;
+    const bgColor = 
+        type === "receita" ? colors.greenLight : 
+        type === 'investimento' ? colors.blue : 
+        type === 'despesa' ? colors.orange : colors.redLight;
     
     const styles = StyleSheet.create({
         container: {
@@ -23,6 +30,7 @@ const BudgetItem : React.FC<Props> = ({ type, description, amount } : Props) => 
         },
         item: {
             fontSize: 14,
+            textTransform: 'capitalize'
         }
     });
   return (
@@ -30,7 +38,7 @@ const BudgetItem : React.FC<Props> = ({ type, description, amount } : Props) => 
       <View style={styles.container}>
             <Text style={styles.item} >{type}</Text>
             <Text style={styles.item}>{description}</Text>
-            <Text style={styles.item}>{amount}</Text>
+            <Text style={styles.item}>{currencyFormat(amount)}</Text>
       </View>
       </TouchableOpacity>
   );

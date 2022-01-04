@@ -43,6 +43,7 @@ export const CardHeader = styled.View`
   align-items: center;
   justify-content: center;
   padding: 10px;
+  margin: 0 10px;
 `;
 
 export const CardContent = styled.View`
@@ -117,6 +118,12 @@ export const FixedBtn = styled.TouchableOpacity`
   padding: 10px;
   `;
 
+export const TextError = styled.Text`
+  color: #FF0000;
+  font-size: 14px;
+  text-align: center;
+  margin: 10px;
+`;
 
 export const colors = {
   green: '#659A00',

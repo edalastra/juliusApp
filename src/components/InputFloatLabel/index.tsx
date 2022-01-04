@@ -4,12 +4,15 @@ import {  TextInput, Text, View, StyleSheet } from "react-native";
 interface Props {
     label: string;
     password: boolean | undefined;
+    numeric: boolean | undefined;
     value: any;
     onChange: (value: string) => void;
 }
 
-const InputFloatLabel = ({ label, password=false, onChange, value } : Props) => {
+const InputFloatLabel = ({ label, password=false, numeric=false, onChange, value } : Props) => {
     const [isFocused, setIsFocused] = useState(false);
+
+    const inputValue = !numeric ? value : `${value}`.replace(/[^0-9]/g, '');
 
     const styles = StyleSheet.create({
         div: {
@@ -31,10 +34,11 @@ const InputFloatLabel = ({ label, password=false, onChange, value } : Props) => 
     return (
         <View style={styles.div}>
             <Text style={styles.label} >{label}</Text>
-            <TextInput  style={styles.input}
+            <TextInput  
+                style={styles.input}
                 secureTextEntry={password}
                 onChangeText={onChange}
-                value={value}
+                value={inputValue}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}  >
             </TextInput>

@@ -9,6 +9,8 @@ interface AuthContextData {
     loading: boolean;
     signIn(email : string, password : string): Promise<void>;
     signOut(): void;
+    updateUser(name : string, password : string): void;
+    changePassword(oldPassword : string, newPassword : string): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -43,6 +45,25 @@ export const AuthProvider: React.FC = ({ children }) => {
             await AsyncStorage.setItem('@RNAuth:token', token);
     }    
 
+    async function updateUser(name : string, email : string) {
+        const response = await auth.updateUser(name, email);
+
+        const { user } = response;
+
+        setUser(user);
+        await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(user));
+    }
+
+    async function changePassword(newPassword : string, oldPassword : string) {
+        const response = await auth.changePassword(newPassword, oldPassword);
+
+        const { user } = response;
+
+        setUser(user);
+        await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(user));
+
+    }
+
     function signOut() {
         AsyncStorage.clear().then(() => {
             setUser(null);
@@ -50,7 +71,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ signed: Boolean(user), user: user, loading, signIn, signOut}}>
+        <AuthContext.Provider value={{ signed: Boolean(user), user: user, loading, signIn, signOut, updateUser, changePassword}}>
             {children}
         </AuthContext.Provider>
     )

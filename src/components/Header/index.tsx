@@ -7,7 +7,6 @@ import AuthContext from "../../contexts/auth";
 
 
 const HeaderComponent : React.FC = ({ navigation }) => {
-    const { signOut } = useContext(AuthContext);
 
     const { user } = React.useContext(AuthContext);
     const firstName = user.name.split(' ')[0];
@@ -21,7 +20,7 @@ const HeaderComponent : React.FC = ({ navigation }) => {
 
             </View>
             <View style={styles.salutationContainer}>
-                <Text onPress={signOut} style={styles.salutation}>Olá, {firstName}</Text>
+                <Text  style={styles.salutation}>Olá, {firstName}</Text>
             </View>
         </View>
     );
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
     },
     salutation: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'Roboto',
         color: '#fff',
         fontSize: 20,
         textAlign: 'right',

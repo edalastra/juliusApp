@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CheckBox } from 'react-native-elements'
-import { View, Text, StyleSheet } from 'react-native';
-import { Btn, BtnText, Strong, Container, Card, Annotation, CardHeader, CardContent, Form, CardFooter } from "../../components/GlobalComponents/styles";
+import { View, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import { Btn, BtnText, Strong, Container, Card, Annotation, CardHeader, CardContent, Form, CardFooter, Title } from "../../components/GlobalComponents/styles";
 import InputFloatLabel from "../../components/InputFloatLabel";
 import AuthContext from "../../contexts/auth";
 import { signUp } from "../../service/api";
@@ -31,7 +31,11 @@ const SignUp : React.FC = () => {
 
     return (
         <Container>
+            <View style={styles.header}>
+            <Title>JULIUS APP</Title>
+            </View>
             <Card>
+                <ScrollView>
                 <CardHeader>
                     <Annotation>Crie sua conta</Annotation>
                 </CardHeader>
@@ -49,7 +53,7 @@ const SignUp : React.FC = () => {
                     <Btn onPress={submit}><BtnText>Cadastrar</BtnText></Btn>
                 </CardContent>
 
-
+                </ScrollView>
             </Card>
         </Container>
     );
@@ -64,6 +68,12 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 16,
+    },
+    header: {
+        height: '20%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
 

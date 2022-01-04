@@ -1,29 +1,55 @@
-import React, { useContext } from "react";
-import { StyleSheet, ScrollView, SafeAreaView, View, Button, Text } from "react-native";
-import { Btn, BtnText, CardHeader, Annotation, Container, CardFooter, Card, CardContent, Title, colors } from '../../components/GlobalComponents/styles';
-import HeaderComponent from "../../components/Header";
-import AuthContext from "../../contexts/auth";
+import React, { useContext, useEffect, useState } from "react";
+import { StyleSheet, ScrollView, SafeAreaView, View, RefreshControl, Text, TextInput } from "react-native";
+import { CardHeader, Annotation,  Card, colors } from '../../components/GlobalComponents/styles';
+import { getBudgets } from "../../service/api"; 
 
 
 const Home: React.FC = () => {
-  const { signOut } = useContext(AuthContext);
+  const [refreshing, setRefreshing] = useState(false);
+  const [budgets, setBudgets] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  async function handleSignOut() {
-    signOut();
+  const monthPT = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  const loadBudgets = async () => {
+    const budgetsList = await getBudgets();
+    setBudgets(budgetsList);
   }
+
+  useEffect(() => {
+    loadBudgets();
+    setLoading(false);
+  },[]);
+
+
   return (
     
       <SafeAreaView>
-        <ScrollView style={styles.container}>
-          <Card >
+      <Text>{!budgets.length ? "Nenhum orçamento encontrado" : "" }</Text>
+
+
+        <ScrollView style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={loadBudgets}
+          />
+        }
+        >
+          {budgets.map((budget, i) => {
+            const currencyFormat = (num) => {
+              return 'R$ ' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+            }
+            
+            return (
+            <Card key={i} >
             <CardHeader>
-            <Annotation>Visão Geral - Novembro</Annotation>
+            <Annotation>Visão Geral - {monthPT[budget.month]} {budget.year}</Annotation>
             </CardHeader>
             <View style={styles.info}>
               <View style={styles.totGreen} />
               <Text style={styles.textInfo} >Receita</Text>
               <View style={styles.valueContent}>
-                <Text style={[styles.value, styles.textGreen]} >R$ 0,00</Text>
+                <Text style={[styles.value, styles.textGreen]} >{currencyFormat(budget.receitas)}</Text>
               </View>
             </View>
 
@@ -31,7 +57,7 @@ const Home: React.FC = () => {
               <View style={styles.totOrange} />
               <Text style={styles.textInfo} >Despesas</Text>
               <View style={styles.valueContent}>
-                <Text style={[styles.value, styles.textRed]} >R$ 0,00</Text>
+                <Text style={[styles.value, styles.textRed]} >{currencyFormat(budget.despesas)}</Text>
               </View>
             </View>
 
@@ -39,22 +65,23 @@ const Home: React.FC = () => {
               <View style={styles.totRed} />
               <Text style={styles.textInfo} >Gastos</Text>
               <View style={styles.valueContent}>
-                <Text style={[styles.value, styles.textRed]} >R$ 0,00</Text>
+                <Text style={[styles.value, styles.textRed]} >{currencyFormat(budget.gastos)}</Text>
               </View>
             </View>
             <View style={styles.info}>
               <View style={styles.totBlue} />
               <Text style={styles.textInfo} >Investimentos</Text>
               <View style={styles.valueContent}>
-                <Text style={[styles.value, styles.textRed]} >R$ 0,00</Text>
+                <Text style={[styles.value, styles.textRed]} >{currencyFormat(budget.receitas)}</Text>
               </View>
             </View>
-            <CardFooter>
-              <Btn ><BtnText>Alterar</BtnText></Btn>
-
-            </CardFooter>
           </Card>
+            );
+          } )}
+
+          
         </ScrollView >
+
       </SafeAreaView>
   );
 };

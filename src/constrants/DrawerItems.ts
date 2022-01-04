@@ -12,7 +12,7 @@ export default [
         iconName: 'home',
     },
     {
-        name: 'Orçamento',
+        name: 'Orçamentos',
         component: RegisterInfo,
         iconName: 'money',
     },

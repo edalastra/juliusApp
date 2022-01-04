@@ -18,12 +18,13 @@ const ModalComponent : React.FC<Props> = ({ title, show, startModal, okBtnAction
         transparent={true}
         visible={show}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           startModal(false);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+          <Text style={styles.title}>{title}</Text>
+
             <React.Fragment>
               {children}
             </React.Fragment>
@@ -44,16 +45,17 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       marginTop: 22,
+      width: '100%'
     },
 
     modalView: {
       margin: 20,
       backgroundColor: "white",
       borderRadius: 5,
-      padding: 35,
+      padding: 30,
       alignItems: "center",
       shadowColor: "#000",
-      width: "60%",
+      width: "90%",
       shadowOffset: {
         width: 0,
         height: 2
@@ -81,6 +83,10 @@ const styles = StyleSheet.create({
     modalText: {
       marginBottom: 15,
       textAlign: "center"
+    },
+    title: {
+      fontSize: 20,
+      
     }
   });
   
